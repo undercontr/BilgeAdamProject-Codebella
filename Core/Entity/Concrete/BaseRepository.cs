@@ -7,43 +7,43 @@ namespace Core.Entity.Concrete;
 
 public class BaseRepository<TEntity, TContext> : IBaseRepository<TEntity> 
     where TEntity : class, IEntity, new()
-    where TContext : DbContext, new()
+    where TContext : DbContext
 {
-    private readonly TContext context;
+    private readonly TContext _context;
 
-    public BaseRepository(TContext context)
+    protected BaseRepository(TContext context)
     {
-        this.context = context;
+        _context = context;
     }
 
     public async Task Create(TEntity entity)
     {
-        EntityEntry createdEntity = context.Entry(entity);
+        EntityEntry createdEntity = _context.Entry(entity);
         createdEntity.State = EntityState.Added;
-        await context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 
     public async Task Update(TEntity entity)
     {
-        EntityEntry modifiedEntity = context.Entry(entity);
+        EntityEntry modifiedEntity = _context.Entry(entity);
         modifiedEntity.State = EntityState.Modified;
-        await context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 
     public async Task Delete(TEntity entity)
     {
-        EntityEntry deletedEntity = context.Entry(entity);
+        EntityEntry deletedEntity = _context.Entry(entity);
         deletedEntity.State = EntityState.Deleted;
-        await context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 
     public async Task<TEntity?> Get(Expression<Func<TEntity, bool>> predicate)
     {
-        return await context.Set<TEntity>().FirstOrDefaultAsync(predicate);
+        return await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
     }
 
     public async Task<ICollection<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate)
     {
-        return await context.Set<TEntity>().Where(predicate).ToListAsync();
+        return await _context.Set<TEntity>().Where(predicate).ToListAsync();
     }
 }
