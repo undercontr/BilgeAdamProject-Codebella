@@ -8,4 +8,5 @@ public class Article : BaseEntity<User>
     public string CoverImage { get; set; }
     public string Content { get; set; }
     public Author Author { get; set; }
+    public ICollection<Comment> Comments { get; set; }
 }
