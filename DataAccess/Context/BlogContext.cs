@@ -1,9 +1,10 @@
 using Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Context;
 
-public class BlogContext : DbContext
+public class BlogContext : IdentityDbContext<User>
 {
     public BlogContext(DbContextOptionsBuilder<BlogContext> optionsBuilder)
     {
