@@ -3,6 +3,6 @@ using Entity;
 
 namespace DataAccess.Abstract;
 
-public interface IArticleRepository : IBaseRepository<Article>
+public interface IAuthorRepository : IBaseRepository<Author>
 {
 }
