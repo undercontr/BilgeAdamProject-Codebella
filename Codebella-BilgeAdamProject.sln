@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.Entity", "Codebella.Entity\Codebella.Entity.csproj", "{62A9DDFA-59B7-4985-86E7-A61B29DA74C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.Core", "Codebella.Core\Codebella.Core.csproj", "{F4CB14F5-331D-4903-87DE-73C91E4504B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.DataAccess", "Codebella.DataAccess\Codebella.DataAccess.csproj", "{A8D4A89F-4E2C-4247-9494-44117943A17A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.AutoMapperTier", "Codebella.AutoMapper\Codebella.AutoMapperTier.csproj", "{134A82AA-8E0D-4837-BF15-887A3C0FEDC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebella.Business", "Codebella.Business\Codebella.Business.csproj", "{B20D4215-0E5D-4B0C-B00F-407F9D16CB83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebella.Mapping", "Codebella.Mapping\Codebella.Mapping.csproj", "{9A53A531-DC08-412A-8DD2-879E96C01203}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62A9DDFA-59B7-4985-86E7-A61B29DA74C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62A9DDFA-59B7-4985-86E7-A61B29DA74C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62A9DDFA-59B7-4985-86E7-A61B29DA74C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62A9DDFA-59B7-4985-86E7-A61B29DA74C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4CB14F5-331D-4903-87DE-73C91E4504B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4CB14F5-331D-4903-87DE-73C91E4504B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4CB14F5-331D-4903-87DE-73C91E4504B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4CB14F5-331D-4903-87DE-73C91E4504B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D4A89F-4E2C-4247-9494-44117943A17A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D4A89F-4E2C-4247-9494-44117943A17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D4A89F-4E2C-4247-9494-44117943A17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D4A89F-4E2C-4247-9494-44117943A17A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134A82AA-8E0D-4837-BF15-887A3C0FEDC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134A82AA-8E0D-4837-BF15-887A3C0FEDC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134A82AA-8E0D-4837-BF15-887A3C0FEDC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134A82AA-8E0D-4837-BF15-887A3C0FEDC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B20D4215-0E5D-4B0C-B00F-407F9D16CB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20D4215-0E5D-4B0C-B00F-407F9D16CB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20D4215-0E5D-4B0C-B00F-407F9D16CB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20D4215-0E5D-4B0C-B00F-407F9D16CB83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A53A531-DC08-412A-8DD2-879E96C01203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A53A531-DC08-412A-8DD2-879E96C01203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A53A531-DC08-412A-8DD2-879E96C01203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A53A531-DC08-412A-8DD2-879E96C01203}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {207F9DEB-E275-4C2A-A9D5-8CF4B23F616E}
+	EndGlobalSection
+EndGlobal
