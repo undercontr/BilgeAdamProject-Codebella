@@ -60,6 +60,20 @@ namespace Codebella.Business.Concrete
                 return new ErrorDataResult<IEnumerable<Article>>(e.Message, null);
             }
         }
+        
+        public async Task<IDataResult<IEnumerable<Article>>> GetAllAsync()
+        {
+            try
+            {
+                var data = await _articleRepository.GetAll();
+                return new SuccessDataResult<IEnumerable<Article>>(data);
+
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<Article>>(e.Message, null);
+            }
+        }
 
         public async Task<IDataResult<Article>> GetByIdAsync(Guid id)
         {
@@ -92,7 +106,7 @@ namespace Codebella.Business.Concrete
             try
             {
                 Article current = await _articleRepository.Get(a => a.Id == article.Id);
-                int likeCount = current != null ? current.Likes.Count : 0;
+                int likeCount = current != null ? current.Likes.Count() : 0;
                 return new SuccessDataResult<int?>(likeCount);
             }
             catch (Exception e)

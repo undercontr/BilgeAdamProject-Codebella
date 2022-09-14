@@ -1,5 +1,6 @@
 ﻿using Codebella.Business.Abstract;
 using Codebella.Core.Utility.ResultType;
+using Codebella.DataAccess.Abstract;
 using Codebella.Entity;
 using System;
 using System.Collections.Generic;
@@ -12,29 +13,76 @@ namespace Codebella.Business.Concrete
 {
     public class LikeManager : ILikeService
     {
-        public Task<IResult> AddAsync(Like like)
+        private readonly ILikeRepository _likeRepository;
+
+        public LikeManager(ILikeRepository likeRepository)
         {
-            throw new NotImplementedException();
+            _likeRepository = likeRepository;
         }
 
-        public Task<IResult> DeleteAsync(Like like)
+        public async Task<IResult> AddAsync(Like like)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _likeRepository.Create(like);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
         }
 
-        public Task<IDataResult<IEnumerable<Like>>> GetAllAsync(Expression<Func<Like, bool>> predicate)
+        public async Task<IResult> DeleteAsync(Like like)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _likeRepository.Delete(like);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
         }
 
-        public Task<IDataResult<Like>> GetByIdAsync(Guid id)
+        public async Task<IDataResult<IEnumerable<Like>>> GetAllAsync(Expression<Func<Like, bool>> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var data = await _likeRepository.GetAll(predicate);
+                return new SuccessDataResult<IEnumerable<Like>>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<Like>>(e.Message, null);
+            }
         }
 
-        public Task<IResult> UpdateAsync(Like like)
+        public async Task<IDataResult<Like>> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var data = await _likeRepository.Get(l => l.Id == id);
+                return new SuccessDataResult<Like>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<Like>(e.Message, null);
+            }
+        }
+
+        public async Task<IResult> UpdateAsync(Like like)
+        {
+            try
+            {
+                await _likeRepository.Update(like);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
         }
     }
 }

@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.DataAccess", "Cod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.AutoMapperTier", "Codebella.AutoMapper\Codebella.AutoMapperTier.csproj", "{134A82AA-8E0D-4837-BF15-887A3C0FEDC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebella.Business", "Codebella.Business\Codebella.Business.csproj", "{B20D4215-0E5D-4B0C-B00F-407F9D16CB83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.Business", "Codebella.Business\Codebella.Business.csproj", "{B20D4215-0E5D-4B0C-B00F-407F9D16CB83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebella.Mapping", "Codebella.Mapping\Codebella.Mapping.csproj", "{9A53A531-DC08-412A-8DD2-879E96C01203}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.Mapping", "Codebella.Mapping\Codebella.Mapping.csproj", "{9A53A531-DC08-412A-8DD2-879E96C01203}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebella.WebUI", "Codebella.WebUI\Codebella.WebUI.csproj", "{72568FC7-DAE4-4177-957E-8D3F142C8797}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9A53A531-DC08-412A-8DD2-879E96C01203}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A53A531-DC08-412A-8DD2-879E96C01203}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A53A531-DC08-412A-8DD2-879E96C01203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72568FC7-DAE4-4177-957E-8D3F142C8797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72568FC7-DAE4-4177-957E-8D3F142C8797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72568FC7-DAE4-4177-957E-8D3F142C8797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72568FC7-DAE4-4177-957E-8D3F142C8797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

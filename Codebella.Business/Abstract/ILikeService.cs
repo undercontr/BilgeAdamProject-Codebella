@@ -16,5 +16,6 @@ namespace Codebella.Business.Abstract
         Task<IResult> DeleteAsync(Like like);
         Task<IDataResult<Like>> GetByIdAsync(Guid id);
         Task<IDataResult<IEnumerable<Like>>> GetAllAsync(Expression<Func<Like, bool>> predicate);
+        Task<IDataResult<IEnumerable<Like>>> GetAllAsync();
     }
 }

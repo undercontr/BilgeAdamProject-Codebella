@@ -62,12 +62,11 @@ namespace Codebella.Business.Concrete
             try
             {
                 var data = await _categoryRepository.Get(c => c.Id == categoryId);
-                //return new SuccessDataResult<IEnumerable<Article>>(data);
+                return new SuccessDataResult<IEnumerable<Article>>(data.Articles);
             }
             catch (Exception e)
             {
-
-                throw;
+                return new ErrorDataResult<IEnumerable<Article>>(e.Message, null);
             }
         }
 

@@ -16,6 +16,7 @@ public interface IArticleService
     Task<IResult> DeleteAsync(Article article);
     Task<IDataResult<Article>> GetByIdAsync(Guid id);
     Task<IDataResult<IEnumerable<Article>>> GetAllAsync(Expression<Func<Article, bool>> predicate);
+    Task<IDataResult<IEnumerable<Article>>> GetAllAsync();
     Task<IDataResult<int?>> GetLikeCountAsync(Article article);
     Task<IDataResult<IEnumerable<Comment>>> GetCommentsAsync(Article article);
 }

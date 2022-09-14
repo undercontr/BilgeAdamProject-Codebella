@@ -54,7 +54,7 @@ public class AuthorManager : IAuthorService
         }
         catch (Exception e)
         {
-            return new ErrorDataResult<IEnumerable<Author>>(e.Message, null),
+            return new ErrorDataResult<IEnumerable<Author>>(e.Message, null);
         }
     }
 

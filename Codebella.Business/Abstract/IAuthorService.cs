@@ -17,5 +17,6 @@ public interface IAuthorService
     Task<IDataResult<Author>> GetByIdAsync(Guid authorId);
     Task<IDataResult<User>> GetUserData(Guid authorId);
     Task<IDataResult<IEnumerable<Author>>> GetAllAsync(Expression<Func<Author, bool>> predicate);
+    Task<IDataResult<IEnumerable<Author>>> GetAllAsync();
     Task<IDataResult<IEnumerable<Article>>> GetArticlesById(Guid authorId);
 }

@@ -16,4 +16,5 @@ public interface ICommentService
     Task<IResult> DeleteAsync(Comment comment);
     Task<IDataResult<Comment>> GetById(Guid commentId);
     Task<IDataResult<IEnumerable<Comment>>> GetAllAsync(Expression<Func<Comment, bool>> predicate);
+    Task<IDataResult<IEnumerable<Comment>>> GetAllAsync();
 }

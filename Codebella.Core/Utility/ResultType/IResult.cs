@@ -8,7 +8,7 @@ namespace Codebella.Core.Utility.ResultType
 {
     public interface IResult
     {
-        bool Success { get; set; };
-        string Message { get; set; };
+        bool Success { get; set; }
+        string Message { get; set; }
     }
 }

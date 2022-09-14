@@ -16,6 +16,7 @@ namespace Codebella.Business.Abstract
         Task<IResult> DeleteAsync(Category category);
         Task<IDataResult<Category>> GetByIdAsync(Guid categoryId);
         Task<IDataResult<IEnumerable<Category>>> GetAllAsync(Expression<Func<Category, bool>> predicate);
+        Task<IDataResult<IEnumerable<Category>>> GetAllAsync();
         Task<IDataResult<IEnumerable<Article>>> GetArticlesById(Guid categoryId);
     }
 }

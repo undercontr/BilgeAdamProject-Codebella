@@ -46,4 +46,9 @@ public class BaseRepository<TEntity, TContext> : IBaseRepository<TEntity>
     {
         return await _context.Set<TEntity>().Where(predicate).ToListAsync();
     }
+    
+    public async Task<IEnumerable<TEntity>> GetAll()
+    {
+        return await _context.Set<TEntity>().ToListAsync();
+    }
 }
