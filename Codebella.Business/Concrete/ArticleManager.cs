@@ -128,17 +128,17 @@ namespace Codebella.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<int?>> GetLikeCountAsync(Article article)
+        public async Task<IDataResult<int>> GetLikeCountAsync(Article article)
         {
             try
             {
                 var current = await _articleRepository.Get(a => a.Id == article.Id);
                 int likeCount = current != null ? current.Likes.Count() : 0;
-                return new SuccessDataResult<int?>(likeCount);
+                return new SuccessDataResult<int>(likeCount);
             }
             catch (Exception e)
             {
-                return new ErrorDataResult<int?>(e.Message, null);
+                return new ErrorDataResult<int>(e.Message, 0);
             }
         }
 

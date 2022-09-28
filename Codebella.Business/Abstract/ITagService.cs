@@ -16,6 +16,7 @@ namespace Codebella.Business.Abstract
         Task<IResult> DeleteAsync(Tag tag);
         Task<IDataResult<Tag>> AddOrGetByNameAsync(string name);
         Task<IDataResult<Tag>> GetByIdAsync(int tagId);
+        Task<IDataResult<Tag>> GetBySlugAsync(string slug);
         Task<IDataResult<IEnumerable<Tag>>> GetAllAsync(Expression<Func<Tag, bool>> predicate);
         Task<IDataResult<IEnumerable<Tag>>> GetAllAsync();
     }

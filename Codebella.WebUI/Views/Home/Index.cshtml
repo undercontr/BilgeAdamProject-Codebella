@@ -33,7 +33,7 @@
                         var content = contentStripped.Substring(0, contentStripped.Length < 100 ? contentStripped.Length : 100);
                     }
                     <p class="card-text">@content @(contentStripped.Length < 100 ? "" : "...")</p>
-                    <a href="#" class="btn btn-primary btn-sm">Read article</a>
+                    <a href="@Url.Action("CategoryArticle", "Category", new { categorySlug = article.Category.Slug, articleSlug = article.Slug })" class="btn btn-primary btn-sm">Read article</a>
                 </div>
                 <div class="card-footer">
                     @foreach (var tag in article.Tags)

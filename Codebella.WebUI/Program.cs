@@ -54,6 +54,12 @@ internal class Program
             defaults: new { controller = "Category", action = "Category" }
             );
 
+        app.MapControllerRoute(
+            name: "tag",
+            pattern: "{controller=Tag}/{slug}",
+            defaults: new { controller = "Tag", action = "Tag" }
+            );
+
         app.MapRazorPages();
 
         app.Run();

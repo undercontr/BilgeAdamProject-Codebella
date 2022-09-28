@@ -1,0 +1,27 @@
+﻿@model Tag
+
+<h1 class="text-center display-4 mb-2">Tag: @Model.Name</h1>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var article in Model.Articles)
+    {
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="badge bg-primary fw-normal">Author: <span class="fw-bold">@article.Author.Nickname</span></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    @{
+                        var contentStripped = article.Content.StripHtmlTags();
+                        var content = contentStripped.Substring(0, contentStripped.Length < 100 ? contentStripped.Length : 100);
+                    }
+                    <p class="card-text">@content @(contentStripped.Length < 100 ? "" : "...")</p>
+                    <a href="@Url.Action("CategoryArticle", "Category", new {categorySlug = article.Category.Slug, articleSlug = article.Slug})" class="btn btn-primary btn-sm">Read article</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

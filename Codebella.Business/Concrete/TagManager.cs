@@ -111,5 +111,18 @@ namespace Codebella.Business.Concrete
                 return new ErrorResult(e.Message);
             }
         }
+
+        public async Task<IDataResult<Tag>> GetBySlugAsync(string slug)
+        {
+            try
+            {
+                var data = await _tagRepository.Get(t => t.Slug == slug);
+                return new SuccessDataResult<Tag>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<Tag>(e.Message, null);
+            }
+        }
     }
 }

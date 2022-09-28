@@ -5,7 +5,6 @@ namespace Codebella.Entity;
 public class Article : BaseEntity
 {
     public string Title { get; set; }
-    public string? CoverImage { get; set; }
     public string Content { get; set; }
     public int AuthorId { get; set; }
     public virtual Author Author { get; set; }

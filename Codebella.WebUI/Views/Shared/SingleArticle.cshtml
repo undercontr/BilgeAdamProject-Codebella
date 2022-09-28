@@ -1,25 +1,38 @@
-﻿@model Article
+﻿@model SingleArticleDto
 
-<div class="d-flex justify-content-between align-items-center">
-    <h1 class="display-4">@Model.Title</h1>
+<div class="d-block d-lg-flex justify-content-between align-items-center">
+    <h1 class="display-4 text-center text-lg-start">@Model.Title</h1>
     <div>
-        <div class="d-block badge bg-primary">Publish Date: <span class="fw-bold">@Model.CreatedOn.ToLongDateString()</span></div>
-        <div class="d-block badge bg-secondary">Last Edited Date: <span class="fw-bold">@Model.UpdatedOn.ToLongDateString()</span></div>
+        <div class="d-block badge bg-primary mb-1">Publish Date: <span class="fw-bold">@Model.CreatedOn.ToLongDateString() @Model.CreatedOn.ToShortTimeString()</span></div>
+        <div class="d-block badge bg-secondary">Last Edited Date: <span class="fw-bold">@Model.UpdatedOn.ToLongDateString() @Model.UpdatedOn.ToShortTimeString()</span></div>
     </div>
 </div>
 
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-block d-lg-flex justify-content-between align-items-center text-center text-lg-start">
     <div>
         <div>
-            <i>Author: @@@Model.Author.Nickname</i>
+            <i>Author: <strong>@@@Model.AuthorNickname</strong></i>
         </div>
         <div>
-            <i>Category: @Model.Category.Name</i>
+            <i>Category: <strong>@Model.CategoryName</strong></i>
         </div>
     </div>
     <div>
-        <a href="" class="btn btn-primary btn-sm">Like <i class="fas fa-like"></i></a>
-        <button class="btn btn-secondary btn-sm">Comment</button>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (!Model.IsMyArticle)
+            {
+                <form id="likeForm" method="POST">
+                    <input type="hidden" name="ArticleId" value="@Model.Id" />
+                    <input type="hidden" name="OwnerId" value="@Model.UserId" />
+                    <button type="submit" class="btn btn-@(Model.IsLiked ? "warning" : "primary") btn-sm">@(Model.IsLiked ? "Dislike" : "Like") <i class="fas fa-thumbs-@(Model.IsLiked ? "down" : "up")"></i> (@Model.LikeCount)</button>
+                </form>
+            }
+        }
+        else
+        {
+            <button class="btn btn-primary btn-sm" disabled>Like <i class="fas fa-thumbs-up"></i> (@Model.LikeCount) (Requires login)</button>
+        }
     </div>
 </div>
 <hr />
@@ -34,3 +47,124 @@
         <div class="badge bg-dark">@tag.Name</div>
     }
 </div>
+
+<hr />
+
+<div>
+    <h5>@(Model.Comments.Count() <= 0 ? "No " : "")Comments</h5>
+    @if (Model.Comments.Count() > 0)
+    {
+        <div class="row row-cols-1 g-4">
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="col">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <p class="small m-0">@comment.Content</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between small py-1">
+                            <div>
+                                @if (comment.IsMyComment)
+                                {
+                                    <form remove-comment>
+                                        <input type="hidden" name="commentId" value="@comment.Id" />
+                                        <button type="submit" class="btn btn-dark btn-sm">Remove</button>
+                                    </form>
+                                }
+                            </div>
+                            <div>
+                                @comment.UserEmail
+                                @if (comment.UserEmail == Model.ArticleUserEmail)
+                                {
+                                    <i class="fas fa-star text-warning"></i>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button id="addCommentBtn" data-bs-toggle="modal" data-bs-target="#addCommentModal" class="btn btn-secondary btn-sm mt-2">Add Comment</button>
+    }
+    else
+    {
+        <button class="btn btn-secondary btn-sm mt-2" disabled>Add Comment (Requires login)</button>
+    }
+</div>
+
+<div class="modal fade" id="addCommentModal" tabindex="-1" aria-labelledby="Add Comment" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="commentForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="ArticleId" value="@Model.Id" />
+                        <input type="hidden" name="UserId" value="@Model.UserId" />
+                        <label for="message-text" class="col-form-label">Comment:</label>
+                        <textarea class="form-control" name="Content" id="message-text"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @if (!Model.IsMyArticle)
+    {
+        <script>
+
+            $("#likeForm").on("submit", async (e) => {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+
+                await fetch("@Url.Action(Model.IsLiked ? "RemoveLike" : "AddLike", "Like")", {
+                    method: "POST",
+                    body: new URLSearchParams(new FormData(document.getElementById("likeForm")))
+                });
+
+                location.reload();
+
+            })
+        </script>
+    }
+
+    <script>
+        $("#commentForm").on("submit", async (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            await fetch("@Url.Action("AddComment", "Comment")", {
+                method: "POST",
+                body: new URLSearchParams(new FormData(document.getElementById("commentForm")))
+            });
+
+            location.reload();
+
+        })
+
+        $("[remove-comment]").on("submit", async (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            await fetch("@Url.Action("RemoveComment", "Comment")", {
+                method: "POST",
+                body: new URLSearchParams(new FormData(e.currentTarget))
+            });
+
+            location.reload();
+        })
+    </script>
+}
+

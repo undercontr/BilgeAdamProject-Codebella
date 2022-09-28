@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Tag>
+
+<div class="text-center">
+    <h1 class="display-2">Tags</h1>
+</div>
+
+<div class="row row-cols-4 row-cols-md-8 g-4">
+    @foreach (var tag in Model)
+    {
+        <div class="col">
+            <div class="card bg-dark p-4">
+                <div class="card-body text-center">
+                    <a href="@Url.Action("Tag", "Tag", new { slug = tag.Slug })">
+                        <span class="card-title fw-bold text-white">@tag.Name</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

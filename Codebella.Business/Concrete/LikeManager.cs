@@ -84,6 +84,37 @@ namespace Codebella.Business.Concrete
                 return new ErrorDataResult<Like>(e.Message, null);
             }
         }
+        public async Task<IDataResult<Like>> GetByOwnerArticleId(int articleId, int userId)
+        {
+            try
+            {
+                var data = await _likeRepository.Get(l => l.OwnerId == userId && l.ArticleId == articleId);
+                return new SuccessDataResult<Like>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<Like>(e.Message, null);
+            }
+        }
+        public async Task<IDataResult<bool>> IsLiked(int articleId, int userId)
+        {
+            try
+            {
+                var data = await GetByOwnerArticleId(articleId, userId);
+
+                if (data.Data != null)
+                {
+                    return new SuccessDataResult<bool>(true);
+                } else
+                {
+                    return new SuccessDataResult<bool>(false);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(e.Message, false);
+            }
+        }
 
         public async Task<IResult> UpdateAsync(Like like)
         {

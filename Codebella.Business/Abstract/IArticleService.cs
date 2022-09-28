@@ -20,6 +20,6 @@ public interface IArticleService
 
     Task<IDataResult<IEnumerable<Article>>> GetAllAsync(Expression<Func<Article, bool>> predicate);
     Task<IDataResult<IEnumerable<Article>>> GetAllAsync();
-    Task<IDataResult<int?>> GetLikeCountAsync(Article article);
+    Task<IDataResult<int>> GetLikeCountAsync(Article article);
     Task<IDataResult<IEnumerable<Comment>>> GetCommentsAsync(Article article);
 }
