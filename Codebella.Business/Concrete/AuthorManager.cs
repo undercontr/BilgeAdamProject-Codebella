@@ -57,12 +57,26 @@ public class AuthorManager : IAuthorService
             return new ErrorDataResult<IEnumerable<Author>>(e.Message, null);
         }
     }
+    
+        public async Task<IDataResult<IEnumerable<Author>>> GetAllAsync()
+        {
+            try
+            {
+                var data = await _authorRepository.GetAll();
+                return new SuccessDataResult<IEnumerable<Author>>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<Author>>(e.Message, null);
+            }
+        }
 
-    public async Task<IDataResult<IEnumerable<Article>>> GetArticlesById(Guid authorId)
+
+    public async Task<IDataResult<IEnumerable<Article>>> GetArticlesById(int authorId)
     {
         try
         {
-            Author author = await _authorRepository.Get(a => a.Id == authorId);
+            var author = await _authorRepository.Get(a => a.Id == authorId);
             return new SuccessDataResult<IEnumerable<Article>>(author.Articles);
         }
         catch (Exception e)
@@ -71,7 +85,7 @@ public class AuthorManager : IAuthorService
         }
     }
 
-    public async Task<IDataResult<Author>> GetByIdAsync(Guid authorId)
+    public async Task<IDataResult<Author>> GetByIdAsync(int authorId)
     {
         try
         {
@@ -81,19 +95,6 @@ public class AuthorManager : IAuthorService
         catch (Exception e)
         {
             return new ErrorDataResult<Author>(e.Message, null);
-        }
-    }
-
-    public async Task<IDataResult<User>> GetUserData(Guid authorId)
-    {
-        try
-        {
-            Author author = await _authorRepository.Get(x => x.Id == authorId);
-            return new SuccessDataResult<User>(author.UserInfo);
-        }
-        catch (Exception e)
-        {
-            return new ErrorDataResult<User>(e.Message, null);
         }
     }
 

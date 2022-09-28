@@ -14,7 +14,10 @@ public interface IArticleService
     Task<IResult> AddAsync(Article article);
     Task<IResult> UpdateAsync(Article article);
     Task<IResult> DeleteAsync(Article article);
-    Task<IDataResult<Article>> GetByIdAsync(Guid id);
+    Task<IResult> DeleteByIdAsync(int id);
+    Task<IDataResult<Article>> GetByIdAsync(int id);
+    Task<IDataResult<Article>> GetBySlugAsync(string slug);
+
     Task<IDataResult<IEnumerable<Article>>> GetAllAsync(Expression<Func<Article, bool>> predicate);
     Task<IDataResult<IEnumerable<Article>>> GetAllAsync();
     Task<IDataResult<int?>> GetLikeCountAsync(Article article);

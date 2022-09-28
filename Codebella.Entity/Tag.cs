@@ -5,5 +5,6 @@ namespace Codebella.Entity;
 public class Tag : BaseEntity
 {
     public string Name { get; set; }
-    public IEnumerable<Article> Articles { get; set; }
+    public string Slug { get; set; }
+    public virtual IEnumerable<Article> Articles { get; set; }
 }

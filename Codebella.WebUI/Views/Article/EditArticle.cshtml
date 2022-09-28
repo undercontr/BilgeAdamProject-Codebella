@@ -1,0 +1,71 @@
+﻿@model EditArticleDto
+
+@{
+    ViewData["Title"] = "Edit Article " + Model.Id;
+}
+<a href="@Url.Action("Index", "Dashboard")" class="btn btn-dark btn-sm mb-2">Back</a>
+<partial name="_StatusMessage" for="StatusMessage" />
+<h3>@ViewData["Title"]</h3>
+
+<form method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="row">
+        <div class="col-6 mb-3">
+            <label for="articleTitle" class="form-label">Title</label>
+            <input type="text" name="Title" class="form-control" id="articleTitle" aria-describedby="articleTitle" value="@Model.Title">
+        </div>
+        <div class="col-6 mb-3">
+            <label for="CategoryId" class="form-label">Category</label>
+            <select id="CategoryId" name="CategoryId" class="form-control">
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id" selected="@(category.Id == Model.Category.Id ? "selected": null)">@category.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-12 mb-3">
+            <label for="categoryId" class="form-label">Tags</label>
+            <select class="form-select" id="separatorTags" name="tags[]" multiple data-allow-new="true" data-allow-clear="true" data-separator=" |,|  ">
+                <option selected disabled hidden value="">Choose a tag...</option>
+               @foreach (var tag in Model.Tags)
+               {
+                   <option value="@tag.Name" selected="selected">@tag.Name</option>
+               }
+            </select>
+        </div>
+        <div class="col-12 mb-3">
+            <textarea name="Content" id="editor">@Model.Content</textarea>
+        </div>
+    </div>
+    <button type="submit" class="d-inline btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+                codeBlock: {
+                    languages: [
+                        { language: 'html', label: 'HTML' },
+                        { language: 'css', label: 'CSS' },
+                        { language: 'js', label: 'JavaScript' },
+                        { language: 'csharp', label: 'C#' },
+                    ]
+                }
+            })
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <script type="module">
+        import Tags from "https://cdn.jsdelivr.net/gh/lekoala/bootstrap5-tags@master/tags.js";
+        Tags.init("#separatorTags");
+
+    </script>
+}

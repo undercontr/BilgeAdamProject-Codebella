@@ -6,6 +6,8 @@
 window.addEventListener('DOMContentLoaded', () => {
     let scrollPos = 0;
     const mainNav = document.getElementById('mainNav');
+    const headerBg = document.querySelector("header.masthead");
+
     const headerHeight = mainNav.clientHeight;
     window.addEventListener('scroll', function() {
         const currentTop = document.body.getBoundingClientRect().top * -1;
@@ -26,4 +28,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         scrollPos = currentTop;
     });
+
+    if (!headerBg) {
+        $(mainNav).css("position", "initial");
+        $(mainNav).find("*").css("color", "black")
+    }
+})
+
+$(() => {
+    $("#mainNav").find("*")
 })

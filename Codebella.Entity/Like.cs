@@ -4,6 +4,8 @@ namespace Codebella.Entity;
 
 public class Like : BaseEntity
 {
-    public User Owner { get; set; }
-    public Article Article { get; set; }
+    public int OwnerId { get; set; }
+    public virtual User Owner { get; set; }
+    public int ArticleId { get; set; }
+    public virtual Article Article { get; set; }
 }

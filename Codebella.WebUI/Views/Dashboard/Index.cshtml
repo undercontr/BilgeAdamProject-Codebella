@@ -1,0 +1,97 @@
+﻿@model DashboardIndexDto
+
+<h1>Your Dashboard</h1>
+
+<div class="d-flex align-items-center justify-content-between">
+    <div>
+        <a href="@Url.Action("CreateArticle", "Article")" class="btn btn-primary small">Create</a>
+        <a id="editBtn" class="btn btn-primary small">Edit</a>
+    </div>
+    <div>
+        <a href="" id="deleteBtn" class="btn btn-danger small">Delete</a>
+    </div>
+</div>
+
+<div class="mt-3">
+    <table class="table table-striped" width="100%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Tags</th>
+                <th>Article Page</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Model.Articles)
+            {
+                <tr article-id="@article.Id">
+                    <td>@article.Title</td>
+                    <td>@article.CategoryName</td>
+                    <td>@article.Tags</td>
+                    <td>@article.Slug</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Styles {
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+}
+
+    @section Scripts {
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('table').DataTable();
+
+            $('table tbody').on('click', 'tr', function() {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                } else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+
+            $("#editBtn").click(function(e) {
+                const selected = selectedRow()
+
+                if (selected.is) {
+                    this.href = "/Article/EditArticle/" + selected.articleId
+                    this.click()
+                } else {
+                    alert("Please choose an article to edit first");
+                    return false;
+                } 
+
+                //e.preventDefault();
+            })
+
+            $('#deleteBtn').click(function(e) {
+               const selected = selectedRow()
+
+                if (selected.is) {
+                    this.href = "/Article/DeleteArticle/" + selected.articleId
+                    this.click()
+                } else {
+                    alert("Please choose an article to delete first");
+                    return false;
+                } 
+
+                //table.row('.selected').remove().draw(false);
+            });
+        });
+
+        function selectedRow() {
+            const el = document.querySelector("table").querySelector(".selected")
+            return {
+                is: !!el,
+                articleId: el?.getAttribute("article-id")
+            }
+        }
+
+    </script>
+}

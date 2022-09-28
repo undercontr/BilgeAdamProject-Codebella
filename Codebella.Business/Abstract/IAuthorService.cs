@@ -14,9 +14,8 @@ public interface IAuthorService
     Task<IResult> AddAsync(Author author);
     Task<IResult> UpdateAsync(Author author);
     Task<IResult> DeleteAsync(Author author);
-    Task<IDataResult<Author>> GetByIdAsync(Guid authorId);
-    Task<IDataResult<User>> GetUserData(Guid authorId);
+    Task<IDataResult<Author>> GetByIdAsync(int authorId);
     Task<IDataResult<IEnumerable<Author>>> GetAllAsync(Expression<Func<Author, bool>> predicate);
     Task<IDataResult<IEnumerable<Author>>> GetAllAsync();
-    Task<IDataResult<IEnumerable<Article>>> GetArticlesById(Guid authorId);
+    Task<IDataResult<IEnumerable<Article>>> GetArticlesById(int authorId);
 }

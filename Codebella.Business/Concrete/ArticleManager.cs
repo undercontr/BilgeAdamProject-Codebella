@@ -47,6 +47,20 @@ namespace Codebella.Business.Concrete
             }
         }
 
+        public async Task<IResult> DeleteByIdAsync(int id)
+        {
+            try
+            {
+                var article = await GetByIdAsync(id);
+                await DeleteAsync(article.Data);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
+        }
+
         public async Task<IDataResult<IEnumerable<Article>>> GetAllAsync(Expression<Func<Article, bool>> expression)
         {
             try
@@ -75,7 +89,7 @@ namespace Codebella.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<Article>> GetByIdAsync(Guid id)
+        public async Task<IDataResult<Article>> GetByIdAsync(int id)
         {
             try
             {
@@ -88,11 +102,24 @@ namespace Codebella.Business.Concrete
             }
         }
 
+        public async Task<IDataResult<Article>> GetBySlugAsync(string slug)
+        {
+            try
+            {
+                var data = await _articleRepository.Get(a => a.Slug == slug);
+                return new SuccessDataResult<Article>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<Article>(e.Message, null);
+            }
+        }
+
         public async Task<IDataResult<IEnumerable<Comment>>> GetCommentsAsync(Article article)
         {
             try
             {
-                Article current = await _articleRepository.Get(a => a.Id == article.Id);
+                var current = await _articleRepository.Get(a => a.Id == article.Id);
                 return new SuccessDataResult<IEnumerable<Comment>>(current.Comments);
             }
             catch (Exception e)
@@ -105,7 +132,7 @@ namespace Codebella.Business.Concrete
         {
             try
             {
-                Article current = await _articleRepository.Get(a => a.Id == article.Id);
+                var current = await _articleRepository.Get(a => a.Id == article.Id);
                 int likeCount = current != null ? current.Likes.Count() : 0;
                 return new SuccessDataResult<int?>(likeCount);
             }

@@ -15,7 +15,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.Business", "Codeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.Mapping", "Codebella.Mapping\Codebella.Mapping.csproj", "{9A53A531-DC08-412A-8DD2-879E96C01203}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebella.WebUI", "Codebella.WebUI\Codebella.WebUI.csproj", "{72568FC7-DAE4-4177-957E-8D3F142C8797}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.WebUI", "Codebella.WebUI\Codebella.WebUI.csproj", "{72568FC7-DAE4-4177-957E-8D3F142C8797}"
+	ProjectSection(ProjectDependencies) = postProject
+		{62A9DDFA-59B7-4985-86E7-A61B29DA74C3} = {62A9DDFA-59B7-4985-86E7-A61B29DA74C3}
+		{A8D4A89F-4E2C-4247-9494-44117943A17A} = {A8D4A89F-4E2C-4247-9494-44117943A17A}
+		{B20D4215-0E5D-4B0C-B00F-407F9D16CB83} = {B20D4215-0E5D-4B0C-B00F-407F9D16CB83}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.DTOs", "Codebella.DTOs\Codebella.DTOs.csproj", "{D2967A17-AE54-4CF9-A794-49EEE320E7D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebella.Infrastructure", "Codebella.Infrastructure\Codebella.Infrastructure.csproj", "{F75BD5E6-8C71-4DBE-95C2-F746E74DB033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebella.Extensions", "Codebella.Extensions\Codebella.Extensions.csproj", "{10969906-622E-46F3-B3E7-139303837FA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +62,18 @@ Global
 		{72568FC7-DAE4-4177-957E-8D3F142C8797}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72568FC7-DAE4-4177-957E-8D3F142C8797}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72568FC7-DAE4-4177-957E-8D3F142C8797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2967A17-AE54-4CF9-A794-49EEE320E7D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2967A17-AE54-4CF9-A794-49EEE320E7D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2967A17-AE54-4CF9-A794-49EEE320E7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2967A17-AE54-4CF9-A794-49EEE320E7D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75BD5E6-8C71-4DBE-95C2-F746E74DB033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75BD5E6-8C71-4DBE-95C2-F746E74DB033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75BD5E6-8C71-4DBE-95C2-F746E74DB033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75BD5E6-8C71-4DBE-95C2-F746E74DB033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10969906-622E-46F3-B3E7-139303837FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10969906-622E-46F3-B3E7-139303837FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10969906-622E-46F3-B3E7-139303837FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10969906-622E-46F3-B3E7-139303837FA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

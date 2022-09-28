@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Codebella.DataAccess\Codebella.DataAccess.csproj" />
     <ProjectReference Include="..\Codebella.Entity\Codebella.Entity.csproj" />
+    <ProjectReference Include="..\Codebella.Extensions\Codebella.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

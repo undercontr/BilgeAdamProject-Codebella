@@ -57,8 +57,21 @@ public class CommentManager : ICommentService
             return new ErrorDataResult<IEnumerable<Comment>>(e.Message, null);
         }
     }
+    
+    public async Task<IDataResult<IEnumerable<Comment>>> GetAllAsync()
+    {
+        try
+        {
+            var data = await _commentRepository.GetAll();
+            return new SuccessDataResult<IEnumerable<Comment>>(data);
+        }
+        catch (Exception e)
+        {
+            return new ErrorDataResult<IEnumerable<Comment>>(e.Message, null);
+        }
+    }
 
-    public async Task<IDataResult<Comment>> GetById(Guid commentId)
+    public async Task<IDataResult<Comment>> GetById(int commentId)
     {
         try
         {

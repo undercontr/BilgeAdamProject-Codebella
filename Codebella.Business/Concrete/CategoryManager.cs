@@ -56,8 +56,21 @@ namespace Codebella.Business.Concrete
                 return new ErrorDataResult<IEnumerable<Category>>(e.Message, null);
             }
         }
+        
+        public async Task<IDataResult<IEnumerable<Category>>> GetAllAsync()
+        {
+            try
+            {
+                var data = await _categoryRepository.GetAll();
+                return new SuccessDataResult<IEnumerable<Category>>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<Category>>(e.Message, null);
+            }
+        }
 
-        public async Task<IDataResult<IEnumerable<Article>>> GetArticlesById(Guid categoryId)
+        public async Task<IDataResult<IEnumerable<Article>>> GetArticlesById(int categoryId)
         {
             try
             {
@@ -70,11 +83,24 @@ namespace Codebella.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<Category>> GetByIdAsync(Guid categoryId)
+        public async Task<IDataResult<Category>> GetByIdAsync(int categoryId)
         {
             try
             {
                 var data = await _categoryRepository.Get(c => c.Id == categoryId);
+                return new SuccessDataResult<Category>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<Category>(e.Message, null);
+            }
+        }
+
+        public async Task<IDataResult<Category>> GetBySlugAsync(string slug)
+        {
+            try
+            {
+                var data = await _categoryRepository.Get(c => c.Slug == slug);
                 return new SuccessDataResult<Category>(data);
             }
             catch (Exception e)

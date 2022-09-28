@@ -1,0 +1,36 @@
+﻿@model Article
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="display-4">@Model.Title</h1>
+    <div>
+        <div class="d-block badge bg-primary">Publish Date: <span class="fw-bold">@Model.CreatedOn.ToLongDateString()</span></div>
+        <div class="d-block badge bg-secondary">Last Edited Date: <span class="fw-bold">@Model.UpdatedOn.ToLongDateString()</span></div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <div>
+            <i>Author: @@@Model.Author.Nickname</i>
+        </div>
+        <div>
+            <i>Category: @Model.Category.Name</i>
+        </div>
+    </div>
+    <div>
+        <a href="" class="btn btn-primary btn-sm">Like <i class="fas fa-like"></i></a>
+        <button class="btn btn-secondary btn-sm">Comment</button>
+    </div>
+</div>
+<hr />
+<div>@Html.Raw(Model.Content)</div>
+
+<hr />
+
+<div>
+    <span class="fw-bold">Tags: </span>
+    @foreach (var tag in Model.Tags)
+    {
+        <div class="badge bg-dark">@tag.Name</div>
+    }
+</div>

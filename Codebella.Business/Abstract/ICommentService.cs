@@ -14,7 +14,7 @@ public interface ICommentService
     Task<IResult> AddAsync(Comment comment);
     Task<IResult> UpdateAsync(Comment comment);
     Task<IResult> DeleteAsync(Comment comment);
-    Task<IDataResult<Comment>> GetById(Guid commentId);
+    Task<IDataResult<Comment>> GetById(int commentId);
     Task<IDataResult<IEnumerable<Comment>>> GetAllAsync(Expression<Func<Comment, bool>> predicate);
     Task<IDataResult<IEnumerable<Comment>>> GetAllAsync();
 }

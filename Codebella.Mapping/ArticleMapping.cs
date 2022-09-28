@@ -9,11 +9,18 @@ using System.Threading.Tasks;
 
 namespace Codebella.Mapping
 {
-    public class ArticleMapping : IEntityTypeConfiguration<Article>
+    public class ArticleMapping : BaseEntityMapping<Article>
     {
-        public void Configure(EntityTypeBuilder<Article> builder)
+        public override void Configure(EntityTypeBuilder<Article> builder)
         {
+            base.Configure(builder);    
 
+            builder.Property(a => a.Title).HasMaxLength(256).IsRequired();
+            builder.Property(a => a.Content).IsRequired();
+
+            builder.HasOne(a => a.Author).WithMany(au => au.Articles).HasForeignKey(a => a.AuthorId);
+            builder.HasMany(a => a.Likes).WithOne(l => l.Article).HasForeignKey(l => l.ArticleId);
+            builder.HasMany(a => a.Comments).WithOne(c => c.Article).HasForeignKey(c => c.ArticleId);
         }
     }
 }

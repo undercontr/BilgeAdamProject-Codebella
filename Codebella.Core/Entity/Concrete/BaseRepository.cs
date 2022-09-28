@@ -37,9 +37,9 @@ public class BaseRepository<TEntity, TContext> : IBaseRepository<TEntity>
         await _context.SaveChangesAsync();
     }
 
-    public async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+    public async Task<TEntity?> Get(Expression<Func<TEntity, bool>> predicate)
     {
-        return await _context.Set<TEntity>().FirstAsync(predicate);
+        return await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
     }
 
     public async Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate)

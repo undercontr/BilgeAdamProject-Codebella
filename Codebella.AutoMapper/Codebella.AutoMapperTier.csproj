@@ -11,4 +11,9 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Codebella.DTOs\Codebella.DTOs.csproj" />
+    <ProjectReference Include="..\Codebella.Entity\Codebella.Entity.csproj" />
+  </ItemGroup>
+
 </Project>

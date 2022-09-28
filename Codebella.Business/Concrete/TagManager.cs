@@ -2,6 +2,7 @@
 using Codebella.Core.Utility.ResultType;
 using Codebella.DataAccess.Abstract;
 using Codebella.Entity;
+using Codebella.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +58,20 @@ namespace Codebella.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<Tag>> GetByIdAsync(Guid tagId)
+        public async Task<IDataResult<IEnumerable<Tag>>> GetAllAsync()
+        {
+            try
+            {
+                var data = await _tagRepository.GetAll();
+                return new SuccessDataResult<IEnumerable<Tag>>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<Tag>>(e.Message, null);
+            }
+        }
+
+        public async Task<IDataResult<Tag>> GetByIdAsync(int tagId)
         {
             try
             {
@@ -68,6 +82,21 @@ namespace Codebella.Business.Concrete
             {
                 return new ErrorDataResult<Tag>(e.Message, null);
             }
+        }
+
+        public async Task<IDataResult<Tag>> AddOrGetByNameAsync(string name)
+        {
+            var tag = await _tagRepository.Get(t => t.Name == name);
+
+            if (tag != null)
+            {
+                return new SuccessDataResult<Tag>(tag);
+            }
+
+            var insertedTag = new Tag { Name = name, Slug = name.Slugify() };
+            await _tagRepository.Create(insertedTag);
+            return new SuccessDataResult<Tag>(insertedTag);
+
         }
 
         public async Task<IResult> UpdateAsync(Tag tag)

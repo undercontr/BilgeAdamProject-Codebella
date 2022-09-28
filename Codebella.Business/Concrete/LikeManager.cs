@@ -58,8 +58,21 @@ namespace Codebella.Business.Concrete
                 return new ErrorDataResult<IEnumerable<Like>>(e.Message, null);
             }
         }
+        
+        public async Task<IDataResult<IEnumerable<Like>>> GetAllAsync()
+        {
+            try
+            {
+                var data = await _likeRepository.GetAll();
+                return new SuccessDataResult<IEnumerable<Like>>(data);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<Like>>(e.Message, null);
+            }
+        }
 
-        public async Task<IDataResult<Like>> GetByIdAsync(Guid id)
+        public async Task<IDataResult<Like>> GetByIdAsync(int id)
         {
             try
             {

@@ -7,8 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\Codebella.Core\Codebella.Core.csproj" />
       <ProjectReference Include="..\Codebella.Entity\Codebella.Entity.csproj" />
+      <ProjectReference Include="..\Codebella.Mapping\Codebella.Mapping.csproj" />
     </ItemGroup>
 
 </Project>

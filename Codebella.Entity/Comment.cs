@@ -4,11 +4,10 @@ namespace Codebella.Entity;
 
 public class Comment : BaseEntity
 {
-    public string Content { get; set; }
-    public Guid ArticleId { get; set; }
-    public Article Article { get; set; }
-    public Guid OwnerId { get; set; }
-    public User Owner { get; set; }
-}
 
-// Owner is actually same with CreatedBy property of BaseEntity. But an admin might want to create a comment for another user.
+    public string Content { get; set; }
+    public int ArticleId { get; set; }
+    public virtual Article Article { get; set; }
+    public int UserId { get; set; }
+    public virtual User User { get; set; }
+}

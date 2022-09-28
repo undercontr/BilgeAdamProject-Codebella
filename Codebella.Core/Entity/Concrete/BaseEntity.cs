@@ -7,12 +7,10 @@ namespace Codebella.Core.Entity.Concrete;
 /// An base entity abstraction that each entity should extend from.
 /// </summary>
 /// <typeparam name="TUser">The user type that will hold created and updated user of a single record</typeparam>
-public abstract class BaseEntity : IEntity, IBaseEntity<Guid>
+public abstract class BaseEntity : IEntity, IBaseEntity<int>
 {
 
-    public Guid Id { get; set; }
-    public string CreatedBy { get; set; }
-    public string UpdatedBy { get; set; }
+    public int Id { get; set; }
     public DateTime CreatedOn { get; set; }
     public DateTime UpdatedOn { get; set; }
     public Status Status { get; set; }
