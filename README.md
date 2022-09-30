@@ -5,7 +5,7 @@ Proje multi-layered architecture mimarisinde yazılmıştır. Klasik bir blog si
 
 Örnek : 
 
-    services.AddCodebellaInfraStructure(builder.Configuration.GetConnectionString("DefaultConnection"));
+    services.AddCodebellaInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 Şeklinde kullanılıyor. Kod içeriği Infrastructure servisinde ServiceExtension.cs dosyası içerisinde tanımlıdır.
 
