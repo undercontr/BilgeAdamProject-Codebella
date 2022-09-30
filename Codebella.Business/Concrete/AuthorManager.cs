@@ -98,6 +98,19 @@ public class AuthorManager : IAuthorService
         }
     }
 
+    public async Task<IDataResult<Author>> GetByNicknameAsync(string nickname)
+    {
+        try
+        {
+            var data = await _authorRepository.Get(a => a.Nickname == nickname);
+            return new SuccessDataResult<Author>(data);
+        }
+        catch (Exception e)
+        {
+            return new ErrorDataResult<Author>(e.Message, null);
+        }
+    }
+
     public async Task<IResult> UpdateAsync(Author author)
     {
         try

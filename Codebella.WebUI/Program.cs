@@ -60,6 +60,12 @@ internal class Program
             defaults: new { controller = "Tag", action = "Tag" }
             );
 
+        app.MapControllerRoute(
+            name: "author",
+            pattern: "{controller=Author}/{nickname}",
+            defaults: new { controller = "Author", action = "Index" }
+            );
+
         app.MapRazorPages();
 
         app.Run();

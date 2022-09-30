@@ -16,6 +16,8 @@ namespace Codebella.Mapping
             base.Configure(builder);
 
             builder.Property(a => a.Nickname).HasMaxLength(64).IsRequired();
+            builder.HasIndex(a => a.Nickname).IsUnique();
+
             builder.Property(a => a.FullName).HasMaxLength(128);
 
             builder.HasMany(ar => ar.Articles).WithOne(au => au.Author).HasForeignKey(au => au.AuthorId);

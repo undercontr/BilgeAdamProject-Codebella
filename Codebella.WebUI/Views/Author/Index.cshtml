@@ -1,6 +1,6 @@
-﻿@model Category
+﻿@model Author
 
-<h1 class="text-center display-4 mb-2">Category: @Model.Name</h1>
+<h1 class="text-center display-4 mb-2">Aritcles of @Model.Nickname</h1>
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
     @foreach (var article in Model.Articles)
@@ -9,9 +9,11 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <div class="badge bg-primary fw-normal">Author: <span class="fw-bold">
-                                <a class="text-white" href="@Url.Action("Index", "Author", new {nickname = article.Author.Nickname})">@article.Author.Nickname</a>
-                        </span></div>
+                        <div class="badge bg-secondary fw-normal">
+                            Category: <span class="fw-bold">
+                                <a class="text-white" href="@Url.Action("Category", "Category", new {slug = article.Category.Slug})">@article.Category.Name</a>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -27,7 +29,7 @@
                     @foreach (var tag in article.Tags)
                     {
                         <div class="badge bg-dark small">
-                            <a href="@Url.Action("Tag", "Tag", new {slug = tag.Name})" class="text-white">@tag.Name</a>
+                                 <a href="@Url.Action("Tag", "Tag", new {slug = tag.Name})" class="text-white">@tag.Name</a>
                         </div>
                     }
                 </div>

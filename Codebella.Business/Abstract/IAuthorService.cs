@@ -15,6 +15,7 @@ public interface IAuthorService
     Task<IResult> UpdateAsync(Author author);
     Task<IResult> DeleteAsync(Author author);
     Task<IDataResult<Author>> GetByIdAsync(int authorId);
+    Task<IDataResult<Author>> GetByNicknameAsync(string nickname);
     Task<IDataResult<IEnumerable<Author>>> GetAllAsync(Expression<Func<Author, bool>> predicate);
     Task<IDataResult<IEnumerable<Author>>> GetAllAsync();
     Task<IDataResult<IEnumerable<Article>>> GetArticlesById(int authorId);

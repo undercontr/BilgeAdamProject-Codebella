@@ -9,7 +9,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <div class="badge bg-primary fw-normal">Author: <span class="fw-bold">@article.Author.Nickname</span></div>
+                        <div class="badge bg-primary fw-normal">Author: <span class="fw-bold">
+                                <a class="text-white" href="@Url.Action("Index", "Author", new {nickname = article.Author.Nickname})">@article.Author.Nickname</a>
+                        </span></div>
                     </div>
                 </div>
                 <div class="card-body">
