@@ -22,8 +22,16 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <div class="badge bg-secondary fw-normal">Category: <span class="fw-bold">@article.Category.Name</span></div>
-                        <div class="badge bg-primary fw-normal">Author: <span class="fw-bold">@article.Author.Nickname</span></div>
+                        <div class="badge bg-secondary fw-normal">
+                            Category: <span class="fw-bold">
+                                <a class="text-white" href="@Url.Action("Category", "Category", new {slug = article.Category.Slug})">@article.Category.Name</a>
+                            </span>
+                        </div>
+                        <div class="badge bg-primary fw-normal">
+                            Author: <span class="fw-bold">
+                                <a class="text-white" href="@Url.Action("Index", "Author", new {nickname = article.Author.Nickname})">@article.Author.Nickname</a>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -38,7 +46,9 @@
                 <div class="card-footer">
                     @foreach (var tag in article.Tags)
                     {
-                        <div class="badge bg-dark small">@tag.Name</div>
+                        <div class="badge bg-dark small">
+                            <a href="@Url.Action("Tag", "Tag", new {slug = tag.Name})" class="text-white">@tag.Name</a>
+                        </div>
                     }
                 </div>
             </div>

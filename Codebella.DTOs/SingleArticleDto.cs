@@ -14,6 +14,7 @@ namespace Codebella.DTOs
         public string AuthorNickname { get; set; }
         public string ArticleUserEmail { get; set; }
         public string CategoryName { get; set; }
+        public string CategorySlug { get; set; }
         public string Slug { get; set; }
         public int LikeCount { get; set; }
         public DateTime CreatedOn { get; set; }
